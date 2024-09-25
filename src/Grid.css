@@ -1,0 +1,114 @@
+/* src/Grid.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #e0e0e0, #f0f0f0);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    /* Increased gap for better spacing */
+    width: 90%;
+    /* Restrict width for better alignment */
+    max-width: 800px;
+    /* Limit maximum width */
+}
+
+.key {
+    background-color: #ffcc00;
+    /* Default color */
+    border: 2px solid #f0b400;
+    /* Add a border */
+    border-radius: 15px;
+    /* More rounded corners */
+    padding: 25px;
+    /* Increased padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    /* Increase font size */
+    color: #333;
+    /* Dark text for contrast */
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    /* Added transform */
+}
+
+.key.behavioral {
+    background-color: #ffcc00;
+    /* Yellow */
+}
+
+.key.engagement {
+    background-color: #ff6699;
+    /* Pink */
+}
+
+.key.preparation {
+    background-color: #ff3366;
+    /* Dark Pink */
+}
+
+.key.physical {
+    background-color: #66ccff;
+    /* Light Blue */
+}
+
+.key.other {
+    background-color: #cccccc;
+    /* Gray */
+}
+
+.key:hover {
+    background-color: #ffd700;
+    /* Hover effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    /* Slight scaling on hover */
+}
+
+.key:active {
+    transform: scale(0.95);
+    /* Scale down on press */
+}
+
+.other-button {
+    grid-column: span 3;
+    /* Center it below the grid */
+    background-color: #ff6699;
+    /* Style for 'Other' */
+    border-radius: 15px;
+    padding: 20px;
+    /* Adjusted padding */
+    text-align: center;
+    color: #fff;
+    /* White text for contrast */
+    font-size: 18px;
+    /* Slightly larger font */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.other-button:hover {
+    background-color: #ff3366;
+    /* Hover effect for 'Other' */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.suggestion-box {
+    margin-top: 20px;
+    /* Space between buttons and suggestion box */
+    padding: 15px;
+    background: #fff;
+    /* White background for contrast */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Center text */
+}
