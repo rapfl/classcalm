@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/classcalm/static/css/main.76ef7539.css",
+    "main.js": "/classcalm/static/js/main.d9be16ae.js",
+    "static/js/453.d599736b.chunk.js": "/classcalm/static/js/453.d599736b.chunk.js",
+    "index.html": "/classcalm/index.html",
+    "main.76ef7539.css.map": "/classcalm/static/css/main.76ef7539.css.map",
+    "main.d9be16ae.js.map": "/classcalm/static/js/main.d9be16ae.js.map",
+    "453.d599736b.chunk.js.map": "/classcalm/static/js/453.d599736b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.76ef7539.css",
+    "static/js/main.d9be16ae.js"
+  ]
+}
