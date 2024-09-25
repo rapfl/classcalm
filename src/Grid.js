@@ -1,10 +1,16 @@
-// src/Grid.js
 import React, { useState } from 'react';
-import './Grid.css'; // Ensure you have this CSS file
+import './Grid.css';
+import Replicate from 'replicate';
+
+// Load API token from .env file
+const replicate = new Replicate({
+    auth: process.env.REACT_APP_REPLICATE_API_TOKEN
+});
 
 const Grid = () => {
     const [selectedDisruption, setSelectedDisruption] = useState(null);
     const [suggestion, setSuggestion] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const buttons = [
         "Low-level Disruption",
@@ -39,57 +45,50 @@ const Grid = () => {
     };
 
     const emojiMap = {
-        "Low-level Disruption": "🔉", // Speaker
-        "Challenging Authority": "🗣️", // Speaking head
-        "Excessive Talking": "💬", // Speech bubble
-        "Off-Task Behavior": "🧭", // Compass
-        "Disrespect": "🙅‍♂️", // Person gesturing no
-        "Group Disruption": "👥", // Two people
-        "Tired Students": "😴", // Sleepy face
-        "Fidgeting": "👐", // Open hands
-        "Unprepared": "📚", // Books
-        "Tech Issues": "💻", // Laptop
-        "Out of Seat": "🚶‍♂️", // Person walking
-        "Excessive Movement": "🏃‍♂️", // Running person
-        "Other": "❓" // Question mark
+        "Low-level Disruption": "🔉",
+        "Challenging Authority": "🗣️",
+        "Excessive Talking": "💬",
+        "Off-Task Behavior": "🧭",
+        "Disrespect": "🙅‍♂️",
+        "Group Disruption": "👥",
+        "Tired Students": "😴",
+        "Fidgeting": "👐",
+        "Unprepared": "📚",
+        "Tech Issues": "💻",
+        "Out of Seat": "🚶‍♂️",
+        "Excessive Movement": "🏃‍♂️",
+        "Other": "❓"
     };
 
-    const getSuggestion = (disruption) => {
-        switch (disruption) {
-            case "Low-level Disruption":
-                return "Try to engage them with a question.";
-            case "Challenging Authority":
-                return "Redirect the conversation by discussing class rules.";
-            case "Excessive Talking":
-                return "Involve them in a group activity.";
-            case "Off-Task Behavior":
-                return "Reiterate instructions clearly.";
-            case "Disrespect":
-                return "Have a private chat after class.";
-            case "Group Disruption":
-                return "Change the seating arrangement.";
-            case "Tired Students":
-                return "Incorporate a short physical activity.";
-            case "Fidgeting":
-                return "Allow use of fidget tools.";
-            case "Unprepared":
-                return "Offer a quick review of the material.";
-            case "Tech Issues":
-                return "Have backup materials ready.";
-            case "Other":
-                return "Discuss with the student to find a solution.";
-            case "Out of Seat":
-                return "Prompt them to participate actively.";
-            case "Excessive Movement":
-                return "Create a movement break.";
-            default:
-                return "";
+    const fetchSuggestion = async (disruption) => {
+        setLoading(true);
+        try {
+            const output = await replicate.run(
+                "your-replicate-model-id", // Replace with your Replicate model ID
+                {
+                    input: {
+                        prompt: `Give me a classroom management strategy for: ${disruption}`
+                    }
+                }
+            );
+            setSuggestion(output);
+        } catch (error) {
+            console.error("Error fetching suggestion:", error);
+            setSuggestion("Sorry, couldn't fetch a suggestion. Please try again.");
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleDisruptionClick = (label) => {
         setSelectedDisruption(label);
-        setSuggestion(getSuggestion(label));
+        fetchSuggestion(label); // Fetch AI-generated suggestion
+    };
+
+    const handleNewSuggestionClick = () => {
+        if (selectedDisruption) {
+            fetchSuggestion(selectedDisruption); // Fetch new suggestion for the same disruption
+        }
     };
 
     return (
@@ -98,14 +97,14 @@ const Grid = () => {
                 {buttons.slice(0, 12).map((label, index) => (
                     <button
                         key={index}
-                        className={`key ${categoryMap[label]}`} // Combine classes
+                        className={`key ${categoryMap[label]}`}
                         onClick={() => handleDisruptionClick(label)}>
-                        {emojiMap[label]} {label} {/* Display emoji with label */}
+                        {emojiMap[label]} {label}
                     </button>
                 ))}
                 <div className="other-button-container">
                     <button
-                        className={`key ${categoryMap["Other"]}`} // Combine classes for 'Other'
+                        className={`key ${categoryMap["Other"]}`}
                         onClick={() => handleDisruptionClick("Other")}>
                         {emojiMap["Other"]} Other
                     </button>
@@ -114,7 +113,12 @@ const Grid = () => {
             {selectedDisruption && (
                 <div className="suggestion-box">
                     <h3>Suggestion for: {selectedDisruption}</h3>
-                    <p>{suggestion}</p>
+                    {loading ? <p>Loading...</p> : <p>{suggestion}</p>}
+                    {!loading && (
+                        <button onClick={handleNewSuggestionClick}>
+                            Generate New Suggestion
+                        </button>
+                    )}
                 </div>
             )}
         </div>
