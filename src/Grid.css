@@ -6,24 +6,32 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(to right, #e0e0e0, #f0f0f0);
+    background: #484848;
+    font-family: 'Calistoga', sans-serif;
 }
 
+/* Grid Container */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* Fixed 3 columns */
+    grid-template-rows: repeat(4, 1fr);
+    /* Fixed 4 rows */
     gap: 15px;
     /* Increased gap for better spacing */
-    width: 90%;
-    /* Restrict width for better alignment */
-    max-width: 800px;
-    /* Limit maximum width */
+    width: 100%;
+    /* Full width */
+    max-width: none;
+    /* Remove max-width to let it expand fully */
+    padding: 0;
+    /* Remove padding */
 }
 
+/* Button Styles */
 .key {
-    background-color: #ffcc00;
+    background-color: #757266;
     /* Default color */
-    border: 2px solid #f0b400;
+    border: 2px solid #ffffff;
     /* Add a border */
     border-radius: 15px;
     /* More rounded corners */
@@ -40,6 +48,7 @@ body {
     /* Added transform */
 }
 
+/* Category-Specific Button Colors */
 .key.behavioral {
     background-color: #ffcc00;
     /* Yellow */
@@ -65,6 +74,7 @@ body {
     /* Gray */
 }
 
+/* Hover and Active States */
 .key:hover {
     background-color: #ffd700;
     /* Hover effect */
@@ -78,8 +88,9 @@ body {
     /* Scale down on press */
 }
 
+/* Other Button Styles */
 .other-button {
-    grid-column: span 3;
+    grid-column: span 1 / -1;
     /* Center it below the grid */
     background-color: #ff6699;
     /* Style for 'Other' */
@@ -100,9 +111,11 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Suggestion Box Styles */
 .suggestion-box {
     margin-top: 20px;
     /* Space between buttons and suggestion box */
+    color: #000000;
     padding: 15px;
     background: #fff;
     /* White background for contrast */
@@ -111,4 +124,43 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     /* Center text */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        /* Change to 2 columns on smaller screens */
+        grid-template-rows: repeat(6, 1fr);
+        /* Allow for more rows */
+    }
+
+    .key {
+        font-size: 14px;
+        /* Adjust font size */
+        padding: 15px;
+        /* Reduce padding on mobile */
+    }
+
+    .other-button {
+        font-size: 16px;
+        /* Adjust font size for 'Other' button */
+        padding: 15px;
+        /* Reduce padding */
+        align-items: center
+    }
+
+    .suggestion-box {
+        font-size: 14px;
+        /* Adjust font size for suggestion box */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        /* Single column on very small screens */
+        grid-template-rows: repeat(12, 1fr);
+        /* More rows to fit all items */
+    }
 }

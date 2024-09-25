@@ -39,13 +39,13 @@ function App() {
     <div className="App">
       <h1>ClassCalm</h1>
       <Grid onDisruptionClick={handleDisruptionClick} />
-      <footer style={{ marginTop: '30px', textAlign: 'center' }}>
+      <footer className="footer">
         <div>
-          <a href="https://github.com/rapfl/thisvandoesnotexist" target="_blank" rel="noopener noreferrer" style={{ margin: '0 5px'}}>GitHub</a> | 
+          <a href="https://github.com/rapfl/classcalm" target="_blank" rel="noopener noreferrer" style={{ margin: '0 5px'}}>GitHub</a> | 
           <a href="https://example.com/link2" target="_blank" rel="noopener noreferrer" style={{ margin: '0 5px' }}>About</a> | 
           <a href="https://example.com/link3" target="_blank" rel="noopener noreferrer" style={{ margin: '0 5px' }}>Sign Up for Custom Prompts</a>
         </div>
-        <div style={{ marginTop: '15px' }} id="kofi-button-container"></div> {/* Separate container for Ko-fi */}
+        <div style={{ marginTop: '15px', display: 'flex', justifyConten: 'center' }} id="kofi-button-container"></div> {/* Separate container for Ko-fi */}
       </footer>
     </div>
   );

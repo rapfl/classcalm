@@ -1,9 +1,8 @@
 /* src/App.css */
 .App {
-  font-family: Arial, sans-serif;
-  background-color: #F1F8E9;
+  font-family: Calistoga, sans-serif;
   /* Very light green background for the app */
-  color: #1B5E20;
+  color: #d3f5d5;
   /* Dark green text */
   text-align: center;
   padding: 20px;
@@ -43,3 +42,41 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'Calistoga';
+  src: url('./fonts/Calistoga/Calistoga-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Calistoga', sans-serif;
+  /* Fallback to sans-serif */
+}
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  justify-content: center;
+  color: #ffffff;
+  /* Color for footer text */
+}
+
+.footer a {
+  color: #ffffff;
+  /* Color for links */
+  margin-right: 10px;
+  /* Space between links */
+  text-decoration: none;
+  /* Remove underline */
+}
+
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  color: #ff38b8;
+  cursor: pointer;
+}
+
+/*thank you for coming to my TED-talk.*/
